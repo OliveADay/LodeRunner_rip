@@ -1,5 +1,19 @@
-[gd_scene format=3 uid="uid://pa4ojs6k0667"]
+[gd_scene load_steps=4 format=3 uid="uid://bjp0aawiwb3wn"]
 
-[node name="World" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bdydulx7xehp5" path="res://tilemap-Sheet.png" id="1_cnjwo"]
 
-[node name="L1" type="Node2D" parent="."]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rg8q"]
+texture = ExtResource("1_cnjwo")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l00uw"]
+sources/0 = SubResource("TileSetAtlasSource_4rg8q")
+
+[node name="L1" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_l00uw")
+format = 2
