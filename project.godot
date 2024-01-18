@@ -16,10 +16,10 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=896
+window/size/viewport_height=512
 window/size/resizable=false
-window/stretch/scale=5.0
+window/stretch/scale=2.0
 
 [rendering]
 
