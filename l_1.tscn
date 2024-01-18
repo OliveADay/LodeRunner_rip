@@ -38,11 +38,21 @@ texture = ExtResource("1_cnjwo")
 1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_1/angular_velocity = 0.0
-1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
 1:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_2/angular_velocity = 0.0
 1:1/0/physics_layer_3/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_3/angular_velocity = 0.0
+1:1/0/physics_layer_3/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_1/angular_velocity = 0.0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
+2:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_2/angular_velocity = 0.0
+2:0/0/physics_layer_3/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_3/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_l00uw"]
 physics_layer_0/collision_layer = 1
