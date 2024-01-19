@@ -19,6 +19,10 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var xInput = Input.get_axis("move_left", "move_right")
 	var yInput = Input.get_axis("move_up", "move_down")
+	if(yInput and $Ladder_detect.has_overlapping_bodies()):
+		velocity.y = yInput *SPEED
+	else:
+		velocity.x = move_toward(velocity.y, 0, SPEED)
 	if xInput:
 		velocity.x = xInput * SPEED
 	else:
