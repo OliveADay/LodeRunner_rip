@@ -19,13 +19,29 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var xInput = Input.get_axis("move_left", "move_right")
 	var yInput = Input.get_axis("move_up", "move_down")
-	if(yInput and $Ladder_detect.has_overlapping_bodies()):
-		velocity.y = yInput *SPEED
-	else:
-		velocity.x = move_toward(velocity.y, 0, SPEED)
+				
 	if xInput:
+		if not $Rail_detect.has_overlapping_bodies():
+			$AnimationPlayer.play("Run")
+			gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+		else:
+			$AnimationPlayer.play("climb_horiz")
 		velocity.x = xInput * SPEED
+		if xInput > 0:
+			$Sprite2D.scale.x = 1
+		else:
+			$Sprite2D.scale.x = -1
 	else:
+		$AnimationPlayer.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if $Rail_detect.has_overlapping_bodies():
+		velocity.y = yInput *SPEED
+		if(not xInput):
+			$AnimationPlayer.play("climb_horiz_idle")
+	
+	if($Ladder_detect.has_overlapping_bodies()):
+		velocity.y = yInput *SPEED
+		$AnimationPlayer.play("climb_vert")
 
 	move_and_slide()

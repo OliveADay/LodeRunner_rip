@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjp0aawiwb3wn"]
+[gd_scene load_steps=9 format=3 uid="uid://bjp0aawiwb3wn"]
 
 [ext_resource type="Texture2D" uid="uid://bdydulx7xehp5" path="res://tilemap-Sheet.png" id="1_cnjwo"]
 [ext_resource type="PackedScene" uid="uid://c5axpvcqvk1od" path="res://player.tscn" id="2_mjdkg"]
+[ext_resource type="Script" path="res://Enem.gd" id="3_negls"]
+[ext_resource type="Texture2D" uid="uid://dbn4sj7eai3oa" path="res://enemy-Sheet.png" id="4_ltjik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rg8q"]
 texture = ExtResource("1_cnjwo")
@@ -75,6 +77,12 @@ physics_layer_3/collision_layer = 8
 physics_layer_3/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_4rg8q")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_606kp"]
+size = Vector2(4, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js6e1"]
+size = Vector2(8, 3)
+
 [node name="L1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -90,4 +98,60 @@ offset_bottom = 240.0
 color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_mjdkg")]
+collision_layer = 128
 platform_wall_layers = 1
+
+[node name="Enem" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(224, 8)
+collision_layer = 8
+collision_mask = 129
+platform_floor_layers = 4294967041
+platform_wall_layers = 1
+script = ExtResource("3_negls")
+player = NodePath("../Player")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enem"]
+texture_filter = 1
+texture = ExtResource("4_ltjik")
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enem"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_606kp")
+
+[node name="Rail_detect" type="Area2D" parent="Enem"]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enem/Rail_detect"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_js6e1")
+
+[node name="laddercheck_left" type="RayCast2D" parent="Enem"]
+target_position = Vector2(-240, 0)
+collision_mask = 2
+
+[node name="laddercheck_right" type="RayCast2D" parent="Enem"]
+target_position = Vector2(240, 0)
+collision_mask = 2
+
+[node name="wallcheck_left" type="RayCast2D" parent="Enem"]
+target_position = Vector2(-232, 0)
+
+[node name="walkcheck_right" type="RayCast2D" parent="Enem"]
+target_position = Vector2(232, 0)
+
+[node name="ladder_detect" type="Area2D" parent="Enem"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enem/ladder_detect"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_js6e1")
+
+[node name="playercheck_left" type="RayCast2D" parent="Enem"]
+target_position = Vector2(-240, 0)
+collision_mask = 128
+
+[node name="playercheck_right" type="RayCast2D" parent="Enem"]
+target_position = Vector2(232, 0)
