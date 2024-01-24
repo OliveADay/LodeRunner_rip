@@ -27,7 +27,8 @@ func _physics_process(delta):
 	else:
 		direction.y = 0
 		
-		
+	
+	
 	velocity = direction * SPEED
 	
 	if not $Rail_detect.has_overlapping_bodies():

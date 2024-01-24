@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://player.gd" id="1_nxi5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vovqv"]
-size = Vector2(3, 10)
+size = Vector2(3, 11)
 
 [sub_resource type="Animation" id="Animation_rsi30"]
 resource_name = "Run"
@@ -118,7 +118,7 @@ vframes = 4
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 2)
+position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_vovqv")
 
 [node name="Ladder_detect" type="Area2D" parent="."]
