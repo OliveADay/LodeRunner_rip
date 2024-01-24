@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://da7a358us1uum"]
+
+[ext_resource type="Script" path="res://Enem.gd" id="1_yin7m"]
+[ext_resource type="Texture2D" uid="uid://dbn4sj7eai3oa" path="res://enemy-Sheet.png" id="2_52lpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_606kp"]
+size = Vector2(4, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js6e1"]
+size = Vector2(8, 37.75)
+
+[node name="Enem" type="CharacterBody2D"]
+position = Vector2(224, 8)
+collision_layer = 8
+collision_mask = 137
+platform_floor_layers = 4294967041
+platform_wall_layers = 1
+script = ExtResource("1_yin7m")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_52lpx")
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_606kp")
+
+[node name="Rail_detect" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rail_detect"]
+position = Vector2(-1, 3.75)
+scale = Vector2(1, 0.3)
+shape = SubResource("RectangleShape2D_js6e1")
+
+[node name="ladder_detect" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder_detect"]
+position = Vector2(0, 5.125)
+shape = SubResource("RectangleShape2D_js6e1")
