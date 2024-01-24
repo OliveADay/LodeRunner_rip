@@ -42,3 +42,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ladder_detect"]
 position = Vector2(0, 5.125)
 shape = SubResource("RectangleShape2D_js6e1")
+
+[node name="LeftLadderCheck" type="RayCast2D" parent="."]
+position = Vector2(0, 16)
+target_position = Vector2(464, 0)
+collision_mask = 2
+
+[node name="RightLadderCheck" type="RayCast2D" parent="."]
+position = Vector2(0, 16)
+target_position = Vector2(-464, 0)
+collision_mask = 2

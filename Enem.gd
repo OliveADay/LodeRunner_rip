@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var currentGrav = 0
 #@onready var wallCheck_left: RayCast2D = $wallcheck_left
 #@onready var wallCheck_right: RayCast2D = $walkcheck_right
 
@@ -19,7 +19,7 @@ func _physics_process(delta):
 		direction.x = -1
 		scale.x = -1
 		
-	if($ladder_detect.has_overlapping_bodies()):
+	if$Rail_detect.has_overlapping_bodies():	
 		if player.position.y - position.y >0:
 			direction.y= 1
 		else:
@@ -27,9 +27,14 @@ func _physics_process(delta):
 	else:
 		direction.y = 0
 		
+		
 	velocity = direction * SPEED
 	
 	if not $Rail_detect.has_overlapping_bodies():
-		velocity.y += gravity * delta
+		currentGrav += gravity * delta
+		velocity.y += currentGrav
+	else:
+		currentGrav = 0
+		
 
 	move_and_slide()
