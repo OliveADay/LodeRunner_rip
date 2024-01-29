@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5axpvcqvk1od"]
+[gd_scene load_steps=12 format=3 uid="uid://c5axpvcqvk1od"]
 
 [ext_resource type="Texture2D" uid="uid://bnhrk1igx2qba" path="res://player-Sheet.png" id="1_k6eoj"]
 [ext_resource type="Script" path="res://player.gd" id="1_nxi5r"]
@@ -103,6 +103,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1q6a"]
 size = Vector2(8, 3)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4a3px"]
+radius = 2.0
+height = 14.0
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(183, 223)
 platform_floor_layers = 4294901761
@@ -139,3 +143,10 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rail_detect"]
 position = Vector2(-1, -2.5)
 shape = SubResource("RectangleShape2D_r1q6a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_4a3px")

@@ -43,5 +43,8 @@ func _physics_process(delta):
 	if($Ladder_detect.has_overlapping_bodies()):
 		velocity.y = yInput *SPEED
 		$AnimationPlayer.play("climb_vert")
+		
+	if $Area2D.has_overlapping_bodies():
+		get_tree().reload_current_scene()
 
 	move_and_slide()
