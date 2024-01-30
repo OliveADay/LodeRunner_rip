@@ -11,6 +11,7 @@ var currentGrav = 0
 @export var player = CharacterBody2D
 var direction = Vector2()
 
+
 func _physics_process(delta):
 	if player.position.x - position.x > 0:
 		direction.x =1
@@ -27,7 +28,6 @@ func _physics_process(delta):
 	else:
 		direction.y = 0
 		
-	
 	
 	velocity = direction * SPEED
 	
