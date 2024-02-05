@@ -165,3 +165,5 @@ shape = SubResource("RectangleShape2D_o0w05")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DigCheck_R"]
 position = Vector2(-19, 16)
 shape = SubResource("RectangleShape2D_o0w05")
+
+[node name="score_r" type="Area2D" parent="."]
