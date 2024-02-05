@@ -7,14 +7,14 @@ const climb_velocity = 300
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var tilmap = TileMap
-var bodies = Array[Node2D]
-var position = Vector2i
+var positionIn = Vector2i()
 
 func _process(delta):
 	if Input.is_action_pressed("dig_left"):
-		bodies = $DigCheck_L.get_overlapping_bodies
+		var bodies = $DigCheck_L.get_overlapping_bodies()
 		tilmap = bodies[0]
-		position = Vector2i($DigCheck_L.position/16
+		positionIn =  Vector2i(floor($DigCheck_L.position/16))
+		tilmap.set_cell(1, positionIn, 2, Vector2i(1,1))
 
 func _physics_process(delta):
 	# Add the gravity.
