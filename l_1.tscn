@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjp0aawiwb3wn"]
+[gd_scene load_steps=11 format=3 uid="uid://bjp0aawiwb3wn"]
 
 [ext_resource type="Texture2D" uid="uid://bdydulx7xehp5" path="res://tilemap-Sheet.png" id="1_cnjwo"]
 [ext_resource type="Script" path="res://Level.gd" id="1_onsmp"]
 [ext_resource type="PackedScene" uid="uid://c5axpvcqvk1od" path="res://player.tscn" id="2_mjdkg"]
 [ext_resource type="PackedScene" uid="uid://da7a358us1uum" path="res://enem.tscn" id="3_5hjo1"]
 [ext_resource type="Script" path="res://gold.gd" id="4_5mcsd"]
+[ext_resource type="PackedScene" uid="uid://bp46supdi55uv" path="res://gold.tscn" id="5_188wk"]
 [ext_resource type="FontFile" uid="uid://beykx8y3d4y0f" path="res://PIXELIFYSANS-VARIABLEFONT_WGHT.TTF" id="6_rugfq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rg8q"]
@@ -99,6 +100,7 @@ size = Vector2(13.995, 4.85089)
 
 [node name="L1" type="Node2D" node_paths=PackedStringArray("winUI")]
 script = ExtResource("1_onsmp")
+totalGold = 7
 winUI = NodePath("ColorRect2")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -134,7 +136,7 @@ position = Vector2(72, 56)
 player = NodePath("../Player")
 
 [node name="gold" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
-position = Vector2(264, 24)
+position = Vector2(280, 24)
 collision_mask = 128
 script = ExtResource("4_5mcsd")
 Level = NodePath("..")
@@ -161,9 +163,99 @@ color = Color(0, 0, 0, 1)
 [node name="Label" type="Label" parent="ColorRect2"]
 z_index = 2
 texture_filter = 1
+layout_mode = 0
 offset_left = 192.0
 offset_top = 120.0
 offset_right = 249.0
 offset_bottom = 143.0
 theme_override_fonts/font = ExtResource("6_rugfq")
 text = "you win"
+
+[node name="gold2" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
+position = Vector2(232, 120)
+collision_mask = 128
+script = ExtResource("4_5mcsd")
+Level = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="gold2"]
+texture_filter = 1
+texture = ExtResource("1_cnjwo")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gold2"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mxmdk")
+
+[node name="gold3" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
+position = Vector2(376, 40)
+collision_mask = 128
+script = ExtResource("4_5mcsd")
+Level = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="gold3"]
+texture_filter = 1
+texture = ExtResource("1_cnjwo")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gold3"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mxmdk")
+
+[node name="gold4" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
+position = Vector2(440, 184)
+collision_mask = 128
+script = ExtResource("4_5mcsd")
+Level = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="gold4"]
+texture_filter = 1
+texture = ExtResource("1_cnjwo")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gold4"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mxmdk")
+
+[node name="gold5" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
+position = Vector2(136, 136)
+collision_mask = 128
+script = ExtResource("4_5mcsd")
+Level = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="gold5"]
+texture_filter = 1
+texture = ExtResource("1_cnjwo")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gold5"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mxmdk")
+
+[node name="gold6" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
+position = Vector2(40, 56)
+collision_mask = 128
+script = ExtResource("4_5mcsd")
+Level = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="gold6"]
+texture_filter = 1
+texture = ExtResource("1_cnjwo")
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gold6"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mxmdk")
+
+[node name="gold7" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("5_188wk")]
+position = Vector2(56, 8)
+Level = NodePath("..")
