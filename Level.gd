@@ -9,7 +9,6 @@ var remainingGold = 0
 func _ready():
 	 # Replace with function body.
 	remainingGold = totalGold
-	print(remainingGold)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
