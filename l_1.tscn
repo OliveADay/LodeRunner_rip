@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjp0aawiwb3wn"]
+[gd_scene load_steps=10 format=3 uid="uid://bjp0aawiwb3wn"]
 
 [ext_resource type="Texture2D" uid="uid://bdydulx7xehp5" path="res://tilemap-Sheet.png" id="1_cnjwo"]
 [ext_resource type="Script" path="res://Level.gd" id="1_onsmp"]
 [ext_resource type="PackedScene" uid="uid://c5axpvcqvk1od" path="res://player.tscn" id="2_mjdkg"]
 [ext_resource type="PackedScene" uid="uid://da7a358us1uum" path="res://enem.tscn" id="3_5hjo1"]
 [ext_resource type="Script" path="res://gold.gd" id="4_5mcsd"]
+[ext_resource type="FontFile" uid="uid://beykx8y3d4y0f" path="res://PIXELIFYSANS-VARIABLEFONT_WGHT.TTF" id="6_rugfq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rg8q"]
 texture = ExtResource("1_cnjwo")
@@ -96,9 +97,9 @@ sources/0 = SubResource("TileSetAtlasSource_4rg8q")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmdk"]
 size = Vector2(13.995, 4.85089)
 
-[node name="L1" type="Node2D"]
+[node name="L1" type="Node2D" node_paths=PackedStringArray("winUI")]
 script = ExtResource("1_onsmp")
-totalGold = 6
+winUI = NodePath("ColorRect2")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -132,10 +133,11 @@ player = NodePath("../Player")
 position = Vector2(72, 56)
 player = NodePath("../Player")
 
-[node name="gold" type="Area2D" parent="."]
+[node name="gold" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
 position = Vector2(264, 24)
 collision_mask = 128
 script = ExtResource("4_5mcsd")
+Level = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="gold"]
 texture_filter = 1
@@ -147,3 +149,22 @@ frame = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gold"]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_mxmdk")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+z_as_relative = false
+offset_right = 464.0
+offset_bottom = 272.0
+scale = Vector2(1, 1.56)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect2"]
+z_index = 2
+texture_filter = 1
+offset_left = 208.0
+offset_top = 56.4103
+offset_right = 265.0
+offset_bottom = 79.4103
+theme_override_fonts/font = ExtResource("6_rugfq")
+text = "you win"
