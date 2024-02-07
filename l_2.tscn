@@ -174,11 +174,14 @@ Level = NodePath("..")
 position = Vector2(304, 232)
 Level = NodePath("..")
 
-[node name="Enem" parent="." instance=ExtResource("7_idnrc")]
+[node name="Enem" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_idnrc")]
 position = Vector2(248, 152)
+player = NodePath("../Player")
 
-[node name="Enem2" parent="." instance=ExtResource("7_idnrc")]
+[node name="Enem2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_idnrc")]
 position = Vector2(96, 104)
+player = NodePath("../Player")
 
-[node name="Enem3" parent="." instance=ExtResource("7_idnrc")]
+[node name="Enem3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_idnrc")]
 position = Vector2(384, 104)
+player = NodePath("../Player")
