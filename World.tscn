@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://World.gd" id="1_fi072"]
 [ext_resource type="PackedScene" uid="uid://bjp0aawiwb3wn" path="res://l_1.tscn" id="1_w5jt6"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" groups=["World"]]
 script = ExtResource("1_fi072")
 
 [node name="L1" parent="." instance=ExtResource("1_w5jt6")]

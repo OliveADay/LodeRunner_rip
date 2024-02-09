@@ -112,6 +112,7 @@ size = Vector2(1, 1)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(183, 223)
+collision_layer = 129
 platform_floor_layers = 4294901761
 script = ExtResource("1_nxi5r")
 metadata/_edit_group_ = true

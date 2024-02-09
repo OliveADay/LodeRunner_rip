@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsrw2ef3xpisq"]
+
+[ext_resource type="FontFile" uid="uid://beykx8y3d4y0f" path="res://PIXELIFYSANS-VARIABLEFONT_WGHT.TTF" id="1_nw4rp"]
+
+[node name="ColorRect2" type="ColorRect"]
+visible = false
+z_index = 2
+z_as_relative = false
+offset_right = 464.0
+offset_bottom = 400.0
+color = Color(0, 0, 0, 1)
+metadata/levelPath = "res://l_2.tscn"
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 120.0
+offset_right = 249.0
+offset_bottom = 143.0
+theme_override_fonts/font = ExtResource("1_nw4rp")
+text = "you win"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
