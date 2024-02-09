@@ -97,10 +97,11 @@ sources/1 = SubResource("TileSetAtlasSource_0ngfx")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmdk"]
 size = Vector2(13.995, 4.85089)
 
-[node name="L2" type="Node2D" node_paths=PackedStringArray("winUI")]
+[node name="L2" type="Node2D" node_paths=PackedStringArray("winUI", "winTimer")]
 script = ExtResource("1_wsluv")
 totalGold = 6
 winUI = NodePath("ColorRect2")
+winTimer = NodePath("ColorRect2/Timer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 448.0
@@ -154,6 +155,7 @@ z_as_relative = false
 offset_right = 464.0
 offset_bottom = 400.0
 color = Color(0, 0, 0, 1)
+metadata/levelPath = "res://l_2.tscn"
 
 [node name="Label" type="Label" parent="ColorRect2"]
 z_index = 2
@@ -165,6 +167,9 @@ offset_right = 249.0
 offset_bottom = 143.0
 theme_override_fonts/font = ExtResource("6_ktjd6")
 text = "you win"
+
+[node name="Timer" type="Timer" parent="ColorRect2"]
+wait_time = 3.0
 
 [node name="gold5" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("3_hvjoc")]
 position = Vector2(400, 200)

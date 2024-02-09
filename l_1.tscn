@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjp0aawiwb3wn"]
+[gd_scene load_steps=12 format=3 uid="uid://bjp0aawiwb3wn"]
 
 [ext_resource type="Texture2D" uid="uid://bdydulx7xehp5" path="res://tilemap-Sheet.png" id="1_cnjwo"]
 [ext_resource type="Script" path="res://Level.gd" id="1_onsmp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://gold.gd" id="4_5mcsd"]
 [ext_resource type="PackedScene" uid="uid://bp46supdi55uv" path="res://gold.tscn" id="5_188wk"]
 [ext_resource type="FontFile" uid="uid://beykx8y3d4y0f" path="res://PIXELIFYSANS-VARIABLEFONT_WGHT.TTF" id="6_rugfq"]
+[ext_resource type="Script" path="res://Timer_1.gd" id="7_wd6ep"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e0of"]
 texture = ExtResource("1_cnjwo")
@@ -98,10 +99,11 @@ sources/2 = SubResource("TileSetAtlasSource_0e0of")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmdk"]
 size = Vector2(13.995, 4.85089)
 
-[node name="L1" type="Node2D" node_paths=PackedStringArray("winUI")]
+[node name="L1" type="Node2D" node_paths=PackedStringArray("winUI", "winTimer")]
 script = ExtResource("1_onsmp")
 totalGold = 7
 winUI = NodePath("ColorRect2")
+winTimer = NodePath("ColorRect2/Timer")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -159,6 +161,7 @@ z_as_relative = false
 offset_right = 464.0
 offset_bottom = 400.0
 color = Color(0, 0, 0, 1)
+metadata/levelPath = "res://l_2.tscn"
 
 [node name="Label" type="Label" parent="ColorRect2"]
 z_index = 2
@@ -170,6 +173,11 @@ offset_right = 249.0
 offset_bottom = 143.0
 theme_override_fonts/font = ExtResource("6_rugfq")
 text = "you win"
+
+[node name="Timer" type="Timer" parent="ColorRect2"]
+wait_time = 3.0
+one_shot = true
+script = ExtResource("7_wd6ep")
 
 [node name="gold2" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
 position = Vector2(232, 120)
@@ -259,3 +267,5 @@ shape = SubResource("RectangleShape2D_mxmdk")
 [node name="gold7" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("5_188wk")]
 position = Vector2(56, 8)
 Level = NodePath("..")
+
+[connection signal="timeout" from="ColorRect2/Timer" to="." method="_on_timer_timeout"]
