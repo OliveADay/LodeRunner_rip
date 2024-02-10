@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://gold.gd" id="5_16oo3"]
 [ext_resource type="PackedScene" uid="uid://da7a358us1uum" path="res://enem.tscn" id="7_idnrc"]
 [ext_resource type="FontFile" uid="uid://beykx8y3d4y0f" path="res://PIXELIFYSANS-VARIABLEFONT_WGHT.TTF" id="7_lrxy1"]
-[ext_resource type="AudioStream" uid="uid://cvp8vepjbxjxx" path="res://upgrade.wav" id="9_b6c3r"]
+[ext_resource type="PackedScene" uid="uid://r2bkulpl084x" path="res://gold_audio.tscn" id="9_4vohr"]
 [ext_resource type="Script" path="res://Transitioner.gd" id="10_m8qqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmdk"]
@@ -111,9 +111,7 @@ player = NodePath("../Player")
 position = Vector2(384, 104)
 player = NodePath("../Player")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_b6c3r")
-volume_db = 1.0
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("9_4vohr")]
 
 [node name="Transitioner" type="Node2D" parent="."]
 script = ExtResource("10_m8qqm")

@@ -14,7 +14,7 @@ script = ExtResource("1_iaa0x")
 totalGold = 7
 winUI = NodePath("ColorRect2")
 winTimer = NodePath("ColorRect2/Timer")
-whatLev = 0
+whatLev = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 448.0
@@ -62,7 +62,7 @@ audio = NodePath("../AudioStreamPlayer2D")
 [node name="ColorRect2" parent="." instance=ExtResource("3_veyo7")]
 
 [node name="Label" parent="ColorRect2" index="0"]
-text = "You completely win"
+text = "You win"
 
 [node name="Timer" parent="ColorRect2" index="1"]
 one_shot = true
@@ -92,6 +92,7 @@ stream = ExtResource("7_bix8t")
 volume_db = 1.0
 script = ExtResource("8_51qj2")
 
+[connection signal="timeout" from="ColorRect2/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ColorRect2/Timer" to="AudioStreamPlayer2D2" method="_on_timer_timeout"]
 
 [editable path="ColorRect2"]
