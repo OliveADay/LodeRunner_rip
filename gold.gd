@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var Level = Node2D
+@export var audio = AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,6 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(get_overlapping_bodies()):
+		audio.playing = true
 		visible = false
 		Level.remainingGold -= 1
 		set_process(false)

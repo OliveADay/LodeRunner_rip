@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnyxnqxcqpo7r"]
+[gd_scene load_steps=12 format=3 uid="uid://cnyxnqxcqpo7r"]
 
 [ext_resource type="Texture2D" uid="uid://bdydulx7xehp5" path="res://tilemap-Sheet.png" id="1_w3tob"]
 [ext_resource type="Script" path="res://Level.gd" id="1_wsluv"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bp46supdi55uv" path="res://gold.tscn" id="3_hvjoc"]
 [ext_resource type="PackedScene" uid="uid://c5axpvcqvk1od" path="res://player.tscn" id="4_4edfa"]
 [ext_resource type="Script" path="res://gold.gd" id="5_16oo3"]
-[ext_resource type="PackedScene" uid="uid://bsrw2ef3xpisq" path="res://color_rect_2.tscn" id="7_d2ua8"]
 [ext_resource type="PackedScene" uid="uid://da7a358us1uum" path="res://enem.tscn" id="7_idnrc"]
+[ext_resource type="FontFile" uid="uid://beykx8y3d4y0f" path="res://PIXELIFYSANS-VARIABLEFONT_WGHT.TTF" id="7_lrxy1"]
+[ext_resource type="AudioStream" uid="uid://cvp8vepjbxjxx" path="res://upgrade.wav" id="9_b6c3r"]
+[ext_resource type="Script" path="res://Transitioner.gd" id="10_m8qqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmdk"]
 size = Vector2(13.995, 4.85089)
@@ -17,7 +19,7 @@ script = ExtResource("1_wsluv")
 totalGold = 6
 winUI = NodePath("ColorRect2")
 winTimer = NodePath("ColorRect2/Timer")
-whatLev = 2
+whatLev = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 448.0
@@ -26,22 +28,25 @@ color = Color(0, 0, 0, 1)
 
 [node name="TileMap" parent="." instance=ExtResource("2_v84q6")]
 
-[node name="gold" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("3_hvjoc")]
+[node name="gold" parent="." node_paths=PackedStringArray("Level", "audio") instance=ExtResource("3_hvjoc")]
 position = Vector2(72, 24)
 Level = NodePath("..")
+audio = NodePath("../AudioStreamPlayer2D")
 
 [node name="Player" parent="." instance=ExtResource("4_4edfa")]
 position = Vector2(242, 230)
 
-[node name="gold2" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("3_hvjoc")]
+[node name="gold2" parent="." node_paths=PackedStringArray("Level", "audio") instance=ExtResource("3_hvjoc")]
 position = Vector2(376, 56)
 Level = NodePath("..")
+audio = NodePath("../AudioStreamPlayer2D")
 
-[node name="gold3" type="Area2D" parent="." node_paths=PackedStringArray("Level")]
+[node name="gold3" type="Area2D" parent="." node_paths=PackedStringArray("Level", "audio")]
 position = Vector2(120, 200)
 collision_mask = 128
 script = ExtResource("5_16oo3")
 Level = NodePath("..")
+audio = NodePath("../AudioStreamPlayer2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="gold3"]
 texture_filter = 1
@@ -54,19 +59,45 @@ frame = 5
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_mxmdk")
 
-[node name="gold4" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("3_hvjoc")]
+[node name="gold4" parent="." node_paths=PackedStringArray("Level", "audio") instance=ExtResource("3_hvjoc")]
 position = Vector2(360, 104)
 Level = NodePath("..")
+audio = NodePath("../AudioStreamPlayer2D")
 
-[node name="ColorRect2" parent="." instance=ExtResource("7_d2ua8")]
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+z_as_relative = false
+offset_right = 464.0
+offset_bottom = 400.0
+color = Color(0, 0, 0, 1)
+metadata/levelPath = "res://l_2.tscn"
 
-[node name="gold5" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("3_hvjoc")]
+[node name="Label" type="Label" parent="ColorRect2"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 120.0
+offset_right = 249.0
+offset_bottom = 143.0
+theme_override_fonts/font = ExtResource("7_lrxy1")
+text = "you win"
+
+[node name="Timer" type="Timer" parent="ColorRect2"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="gold5" parent="." node_paths=PackedStringArray("Level", "audio") instance=ExtResource("3_hvjoc")]
 position = Vector2(400, 200)
 Level = NodePath("..")
+audio = NodePath("../AudioStreamPlayer2D")
 
-[node name="gold6" parent="." node_paths=PackedStringArray("Level") instance=ExtResource("3_hvjoc")]
+[node name="gold6" parent="." node_paths=PackedStringArray("Level", "audio") instance=ExtResource("3_hvjoc")]
 position = Vector2(304, 232)
 Level = NodePath("..")
+audio = NodePath("../AudioStreamPlayer2D")
 
 [node name="Enem" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_idnrc")]
 position = Vector2(248, 152)
@@ -80,4 +111,12 @@ player = NodePath("../Player")
 position = Vector2(384, 104)
 player = NodePath("../Player")
 
-[editable path="ColorRect2"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_b6c3r")
+volume_db = 1.0
+
+[node name="Transitioner" type="Node2D" parent="."]
+script = ExtResource("10_m8qqm")
+
+[connection signal="timeout" from="ColorRect2/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ColorRect2/Timer" to="Transitioner" method="_on_timer_timeout"]

@@ -12,6 +12,7 @@ func _process(delta):
 	pass
 	
 func _Trans_1_2(lev):
+	$AudioStreamPlayer2D.playing = true
 	if(lev == 1):
 		add_child(L2)
 		$L1.queue_free()
